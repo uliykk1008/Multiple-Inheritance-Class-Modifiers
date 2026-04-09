@@ -1,0 +1,894 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>OOP Report - Uliya Gumpari</title>
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700;900&family=Orbitron:wght@400;700;900&family=Fira+Code:wght@400;500&display=swap"
+    rel="stylesheet">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      color: white;
+      background: #000814;
+      overflow-x: hidden;
+    }
+
+    /* Galaxy Background */
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background:
+        radial-gradient(circle at 20% 30%, #001d3d, transparent 40%),
+        radial-gradient(circle at 80% 70%, #3a0ca3, transparent 40%),
+        radial-gradient(circle at 50% 50%, #000814, transparent 60%);
+      z-index: -2;
+    }
+
+    /* Moving Stars Effect */
+    .stars {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      background-image:
+        radial-gradient(1px 1px at 10% 10%, #fff, transparent),
+        radial-gradient(2px 2px at 30% 50%, #fff, transparent),
+        radial-gradient(1px 1px at 70% 80%, #ffd60a, transparent),
+        radial-gradient(2px 2px at 90% 10%, #fff, transparent);
+      background-size: 500px 500px;
+      animation: moveStars 100s linear infinite;
+    }
+
+    @keyframes moveStars {
+      from {
+        transform: translateY(0);
+      }
+
+      to {
+        transform: translateY(-500px);
+      }
+    }
+
+    header {
+      text-align: center;
+      padding: 140px 20px 80px;
+    }
+
+    header h1 {
+      font-family: 'Orbitron', sans-serif;
+      font-size: clamp(2rem, 6vw, 4rem);
+      letter-spacing: 5px;
+      color: #ffd60a;
+      text-shadow: 0 0 30px rgba(255, 214, 10, 0.4);
+      margin-bottom: 20px;
+      text-transform: uppercase;
+    }
+
+    header p {
+      font-size: 1.2rem;
+      letter-spacing: 3px;
+      color: #00f5ff;
+      font-family: 'Orbitron', sans-serif;
+    }
+
+    .container {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+
+    section {
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(25px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 30px;
+      padding: 60px;
+      margin-bottom: 100px;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+      opacity: 0;
+      transform: translateY(50px);
+      transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    section.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    h2 {
+      font-family: 'Orbitron', sans-serif;
+      color: #ffd60a;
+      margin-bottom: 30px;
+      font-size: 2rem;
+      position: relative;
+      display: inline-block;
+    }
+
+    h2::after {
+      content: "";
+      position: absolute;
+      bottom: -10px;
+      left: 0;
+      width: 50%;
+      height: 4px;
+      background: #00f5ff;
+      box-shadow: 0 0 10px #00f5ff;
+    }
+
+    p {
+      font-weight: 300;
+      line-height: 2;
+      margin-bottom: 30px;
+      color: #e0e0e0;
+      font-size: 1.1rem;
+    }
+
+    ul {
+      list-style: none;
+      margin-bottom: 30px;
+    }
+
+    ul li {
+      margin-bottom: 15px;
+      padding-left: 35px;
+      position: relative;
+      color: #e0e0e0;
+    }
+
+    ul li::before {
+      content: "✦";
+      position: absolute;
+      left: 0;
+      color: #ffd60a;
+      font-size: 1.2rem;
+    }
+
+    /* CODE BOX STYLING */
+    .code-container {
+      margin: 30px 0;
+      background: #050505;
+      border: 1px solid #333;
+      border-radius: 15px;
+      overflow: hidden;
+    }
+
+    .code-header {
+      background: #111;
+      padding: 10px 20px;
+      font-family: 'Orbitron', sans-serif;
+      font-size: 0.7rem;
+      color: #666;
+      border-bottom: 1px solid #222;
+      text-transform: uppercase;
+    }
+
+    pre {
+      padding: 25px;
+      overflow-x: auto;
+      font-family: 'Fira Code', monospace;
+      font-size: 0.9rem;
+      line-height: 1.6;
+      color: #00ff88;
+    }
+
+    button {
+      margin-top: 30px;
+      padding: 16px 45px;
+      border: none;
+      border-radius: 40px;
+      background: #ffd60a;
+      color: black;
+      font-family: 'Orbitron', sans-serif;
+      font-weight: 900;
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: 0.4s;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+    }
+
+    button:hover {
+      background: white;
+      box-shadow: 0 0 40px #ffd60a;
+      transform: scale(1.05);
+    }
+
+    /* MODAL */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 1000;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.95);
+      backdrop-filter: blur(15px);
+    }
+
+    .modal-content {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 90%;
+      height: 85%;
+      background: black;
+      border: 2px solid #ffd60a;
+      border-radius: 25px;
+      overflow: hidden;
+      box-shadow: 0 0 60px rgba(255, 214, 10, 0.3);
+    }
+
+    .modal-content iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+
+    .close {
+      position: absolute;
+      right: 30px;
+      top: 20px;
+      font-size: 45px;
+      color: #ffd60a;
+      cursor: pointer;
+      z-index: 1001;
+      font-weight: 900;
+    }
+
+    footer {
+      text-align: center;
+      padding: 100px 20px;
+      color: #666;
+      font-family: 'Orbitron', sans-serif;
+      font-size: 0.9rem;
+      letter-spacing: 3px;
+    }
+
+    .highlight {
+      color: #00f5ff;
+      font-weight: 600;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="stars"></div>
+
+  <header>
+    <h1>Multiple Inhertance & Class Modifiers(Sealed,Base,final)</h1>
+    <p>Uliya Gumpari | 251410008 | Kelas: SI2A</p>
+  </header>
+
+  <div class="container">
+
+      <section>
+  <h2>.Multiple Inheritance dengan Mixin, Polimorfisme, dan Abstraksi</h2>
+
+  <p>
+    Dalam pemrograman berorientasi objek, terdapat beberapa konsep penting seperti
+    multiple inheritance dengan mixin, polimorfisme, dan abstraksi yang saling berkaitan.
+  </p>
+
+  <p>
+    <b>Multiple Inheritance dengan Mixin</b> digunakan untuk menambahkan beberapa
+    fitur ke dalam satu class tanpa menggunakan pewarisan langsung. Dengan mixin,
+    sebuah class dapat memiliki lebih dari satu kemampuan.
+  </p>
+
+  <p>
+    <b>Polimorfisme</b> memungkinkan satu tipe data digunakan untuk berbagai objek
+    dengan perilaku yang berbeda. Hal ini membuat kode lebih fleksibel dalam penggunaan.
+  </p>
+
+  <p>
+    <b>Abstraksi</b> digunakan untuk menyederhanakan sistem dengan cara menyembunyikan
+    detail yang tidak diperlukan dan hanya menampilkan fungsi utama kepada pengguna.
+  </p>
+
+  <p>
+    Ketiga konsep ini membantu dalam membuat program yang lebih terstruktur,
+    mudah dikembangkan, dan mudah dipelihara.
+  </p>
+ </section>
+
+    <section>
+      <h2>. Studi Kasus Burung Dan Bebek</h2>
+      <p>
+    Burung merupakan class induk, sedangkan Bebek adalah class turunan.
+    Bebek mewarisi sifat dari Burung, tetapi dapat memiliki perilaku yang berbeda.
+  </p>
+
+  <p>
+    Hal ini menunjukkan konsep inheritance dan polimorfisme dalam OOP.
+  </p>
+
+      <div class="code-container">
+        <div class="code-header">DART SOURCE CODE</div>
+        <pre><code>// Nama   : Uliya Gumpari
+// NIM   : 251410008
+// Kelas : SI2A
+
+mixin CanFly {
+  void fly() {
+    print('Can fly!');
+  }
+}
+
+mixin CanSwim {
+  void swim() {
+    print('Can swim!');
+  }
+}
+
+class Bird with CanFly {}
+class Duck extends Bird with CanSwim {}
+
+void main() {
+  print("=== MIXIN BASIC ===");
+
+  Bird bird = Bird();
+  bird.fly();
+
+  Duck duck = Duck();
+  duck.fly();
+  duck.swim();
+}
+}</code></pre>
+      </div>
+
+      <button onclick="openModal('https://dartpad.dev/?id=d21dfa4f214527686c1f2d640cec64d6&run=true')">Run Program</button>
+    </section>
+
+    <section>
+      <h2>. STUDI KASUS MIXIN DENGAN STATE</h2>
+      <p>
+    Mixin dengan state digunakan untuk menambahkan fitur sekaligus menyimpan data
+    (state) ke dalam sebuah class tanpa harus menggunakan pewarisan langsung.
+  </p>
+
+  <p>
+    Dengan mixin, sebuah class dapat memiliki beberapa kemampuan tambahan beserta
+    data yang mendukung fungsinya.
+  </p>
+
+      <div class="code-container">
+        <div class="code-header">DART SOURCE CODE</div>
+        <pre><code>// Nama   : Uliya Gumpari
+// Nim    : 251410008
+// Kelas  : SI2A
+
+mixin CanFly {
+  bool _isFlying = false;
+
+  void fly() {
+    if (!_isFlying) {
+      _isFlying = true;
+      print('Started flying!');
+    }
+  }
+
+  void land() {
+    if (_isFlying) {
+      _isFlying = false;
+      print('Landed!');
+    }
+  }
+}
+
+mixin CanSwim {
+  bool _isSwimming = false;
+
+  void swim() {
+    if (!_isSwimming) {
+      _isSwimming = true;
+      print('Started swimming!');
+    }
+  }
+
+  void stopSwim() {
+    if (_isSwimming) {
+      _isSwimming = false;
+      print('Stop swimming!');
+    }
+  }
+}
+
+class Bird with CanFly {}
+class Duck extends Bird with CanSwim {}
+
+void main() {
+  print("=== MIXIN STATE ===");
+
+  Bird bird = Bird();
+  bird.fly();
+  bird.land();
+
+  Duck duck = Duck();
+  duck.fly();
+  duck.swim();
+}
+}</code></pre>
+      </div>
+
+      <button onclick="openModal('https://dartpad.dev/?id=37ce272e948b261d8bbc64687109eff8&run=true')">Run Program</button>
+    </section>
+
+    <section>
+      <h2>. Pengantar Class Modifers</h2>
+      <p>
+    Class modifiers adalah kata kunci dalam Dart yang digunakan untuk mengatur
+    bagaimana sebuah class dapat digunakan, diwariskan, atau diimplementasikan.
+  </p>
+
+  <p>
+    Dengan class modifiers, pengembang dapat mengontrol akses dan perilaku class
+    agar sesuai dengan kebutuhan program.
+  </p>
+    </section>
+
+     <section>
+      <h2>05. Sealed Class dan Keuntungannya</h2>
+      <p>
+    Sealed class adalah class yang membatasi pewarisan hanya pada file yang sama.
+    Class ini digunakan untuk mengontrol subclass yang dapat dibuat.
+  </p>
+
+  <p><b>Keuntungan Sealed Class:</b></p>
+  <ul>
+    <li>Membatasi pembuatan subclass secara lebih terkontrol</li>
+    <li>Meningkatkan keamanan struktur program</li>
+    <li>Mempermudah pengelolaan dan pemahaman kode</li>
+    <li>Membantu dalam penggunaan pattern matching</li>
+  </ul>
+
+      <div class="code-container">
+        <div class="code-header">DART SOURCE CODE</div>
+        <pre><code>// Nama   : Uliya Gumpari
+// NIM   : 251410008
+// Kelas : SI2A
+
+sealed class ApiResponse {}
+
+class Success extends ApiResponse {
+  final String message;
+  Success(this.message);
+}
+
+class Error extends ApiResponse {
+  final String errorMessage;
+  Error(this.errorMessage);
+}
+
+void handleResponse(ApiResponse response) {
+  if (response is Success) {
+    print("Success: ${response.message}");
+  } else if (response is Error) {
+    print("Error: ${response.errorMessage}");
+  }
+}
+
+void main() {
+  print("=== SEALED CLASS ===");
+
+  ApiResponse res1 = Success("Data berhasil");
+  ApiResponse res2 = Error("Koneksi gagal");
+
+  handleResponse(res1);
+  handleResponse(res2);
+}
+}</code></pre>
+      </div>
+
+      <button onclick="openModal('&run=true')">Run Program</button>
+    </section>
+
+    <section>
+      <h2>. Base Class dan Penggunanya </h2>
+      <p>
+    Base class adalah class yang dapat diwariskan, tetapi hanya dapat digunakan
+    sebagai dasar oleh class lain dalam library yang sama.
+  </p>
+
+  <p><b>Kapan Digunakan:</b></p>
+  <ul>
+    <li>Saat ingin membatasi pewarisan hanya dalam satu library</li>
+    <li>Untuk menjaga struktur class agar tetap terkontrol</li>
+    <li>Ketika ingin memberikan dasar implementasi yang aman</li>
+  </ul>
+
+      <div class="code-container">
+        <div class="code-header">DART SOURCE CODE</div>
+        <pre><code>// Nama   : Uliya Gumpari
+// NIM   : 251410008
+// Kelas : SI2A
+
+base class Animal {
+  void speak() {
+    print("Animal makes sound");
+  }
+}
+
+base class Dog extends Animal {
+  @override
+  void speak() {
+    print("Woof!");
+  }
+}
+
+base class Cat extends Animal {
+  @override
+  void speak() {
+    print("Meow!");
+  }
+}
+
+void main() {
+  print("=== BASE CLASS ===");
+
+  Animal a = Animal();
+  Animal dog = Dog();
+  Animal cat = Cat();
+
+  a.speak();
+  dog.speak();
+  cat.speak();
+}
+}</code></pre>
+      </div>
+
+      <button onclick="openModal('&run=true')">Run Program</button>
+    </section>
+
+    <section>
+      <h2>07. Final Class</h2>
+      <p>
+    Final class adalah class yang tidak dapat diwariskan atau di-extend oleh class lain.
+  </p>
+
+  <p><b>Kegunaan:</b></p>
+  <ul>
+    <li>Mencegah class digunakan sebagai parent</li>
+    <li>Menjaga implementasi agar tidak diubah oleh subclass</li>
+    <li>Meningkatkan keamanan dan kestabilan kode</li>
+  </ul>
+
+      <div class="code-container">
+        <div class="code-header">DART SOURCE CODE</div>
+        <pre><code>// Nama   : Uliya Gumpari
+// Nim    : 251410008
+// Kelas  : SI2A
+
+final class Settings {
+  final String theme;
+  final int fontSize;
+
+  Settings({required this.theme, required this.fontSize});
+
+  void showSettings() {
+    print("Theme: $theme, Font Size: $fontSize");
+  }
+}
+
+void main() {
+  print("=== FINAL CLASS ===");
+
+  Settings s = Settings(theme: "Dark", fontSize: 14);
+  s.showSettings();
+}
+}</code></pre>
+      </div>
+
+      <button onclick="openModal('&run=true')">Run Program</button>
+    </section>
+
+    <section>
+      <h2>. Perbandingan Class Modifers</h2>
+      <table border="1" cellpadding="8">
+    <tr>
+      <th>Modifier</th>
+      <th>Deskripsi</th>
+    </tr>
+    <tr>
+      <td>abstract</td>
+      <td>Tidak bisa dibuat objek langsung, digunakan sebagai dasar class</td>
+    </tr>
+    <tr>
+      <td>base</td>
+      <td>Hanya dapat diwariskan dalam library yang sama</td>
+    </tr>
+    <tr>
+      <td>interface</td>
+      <td>Digunakan sebagai kontrak yang harus diimplementasikan</td>
+    </tr>
+    <tr>
+      <td>final</td>
+      <td>Tidak dapat diwariskan atau di-extend</td>
+    </tr>
+    <tr>
+      <td>sealed</td>
+      <td>Membatasi subclass hanya dalam file yang sama</td>
+    </tr>
+  </table>
+</section>
+
+    <section>
+      <h2>. Praktik 1 Sealed Class dengan Pattern Matching</h2>
+      <p>
+    Sealed class memungkinkan kita mengetahui semua kemungkinan subclass
+    yang ada dalam satu file.
+  </p>
+
+  <p>
+    Dengan pattern matching, setiap kemungkinan tersebut dapat diperiksa
+    dan ditangani secara spesifik sesuai jenis objeknya.
+  </p>
+
+  <p>
+    Hal ini membuat kode lebih aman karena semua kondisi dapat ditangani
+    tanpa ada yang terlewat.
+  </p>
+
+      <div class="code-container">
+        <div class="code-header">DART SOURCE CODE</div>
+        <pre><code>// Nama   : Uliya Gumpari
+// Nim    : 251410008
+// Kelas  : SI2A
+
+sealed class Status {}
+
+class Loading extends Status {}
+
+class Loaded extends Status {
+  final String data;
+  Loaded(this.data);
+}
+
+class Failed extends Status {
+  final String error;
+  Failed(this.error);
+}
+
+void handleStatus(Status status) {
+  switch (status) {
+    case Loading():
+      print('Loading...');
+    case Loaded(:final data):
+      print('Data: $data');
+    case Failed(:final error):
+      print('Error: $error');
+  }
+}
+
+void main() {
+  print("=== SEALED PATTERN ===");
+
+  handleStatus(Loading());
+  handleStatus(Loaded("Data berhasil"));
+  handleStatus(Failed("Terjadi kesalahan"));
+}
+}</code></pre>
+      </div>
+
+      <button onclick="openModal('https://dartpad.dev/?id=29ce249c5f745e040eff43395bfded69&run=true')">Run Program</button>
+    </section>
+
+       <section>
+      <h2>. Sistem State Management</h2>
+      <p></p>
+
+      <div class="code-container">
+        <div class="code-header">DART SOURCE CODE</div>
+        <pre><code>// Nama   : Uliya Gumpari
+// Nim    : 251410008
+// Kelas  : SI2A
+
+sealed class AppState {}
+
+class LoadingState extends AppState {}
+
+class SuccessState extends AppState {
+  final List<String> items;
+  SuccessState(this.items);
+}
+
+class ErrorState extends AppState {
+  final String message;
+  ErrorState(this.message);
+}
+
+void updateUI(AppState state) {
+  switch (state) {
+    case LoadingState():
+      print('Loading...');
+    case SuccessState(:final items):
+      print('Success: $items');
+    case ErrorState(:final message):
+      print('Error: $message');
+  }
+}
+
+void main() {
+  print("=== APP STATE ===");
+
+  updateUI(LoadingState());
+  updateUI(SuccessState(["A", "B"]));
+  updateUI(ErrorState("Gagal"));
+}
+}</code></pre>
+      </div>
+
+      <button onclick="openModal('https://dartpad.dev/?id=433210ab2c6246f38cbd5bc505b64eb7&run=true')">Run Program</button>
+    </section>
+
+    <section>
+      <h2>11. Ringkasan & Best Practices</h2>
+      <p><b>Ringkasan:</b></p>
+  <ul>
+    <li>Sealed class digunakan untuk membatasi hierarki dan mendukung pattern matching</li>
+    <li>Base class digunakan sebagai dasar class yang hanya dapat di-extend</li>
+    <li>Final class digunakan untuk mencegah pewarisan dari luar</li>
+  </ul>
+
+  <p><b>Best Practices:</b></p>
+  <ul>
+    <li>Gunakan sealed class untuk state atau kondisi yang jumlahnya terbatas</li>
+    <li>Gunakan base class untuk membuat kerangka dasar program</li>
+    <li>Gunakan final class untuk class yang tidak ingin diubah atau diwariskan</li>
+  </ul>
+</section>
+
+      <section>
+  <h2>12. Latihan</h2>
+
+      <div class="code-container">
+        <div class="code-header">DART SOURCE CODE</div>
+        <pre><code>// Nama   : Uliya Gumpari
+// NIM   : 251410008
+// Kelas : SI2A
+base class Repository {
+  void create(String data) {
+    print("Create: $data");
+  }
+
+  void read() {
+    print("Read data");
+  }
+
+  void update(int id, String data) {
+    print("Update id=$id: $data");
+  }
+
+  void delete(int id) {
+    print("Delete id=$id");
+  }
+}
+
+base class UserRepository extends Repository {
+  @override
+  void read() {
+    print("Menampilkan semua user");
+  }
+}
+
+base class ProductRepository extends Repository {
+  @override
+  void read() {
+    print("Menampilkan semua produk");
+  }
+}
+
+final class MathUtils {
+  static int tambah(int a, int b) => a + b;
+  static int kurang(int a, int b) => a - b;
+  static int kali(int a, int b) => a * b;
+  static double bagi(double a, double b) => a / b;
+}
+
+void main() {
+  print("=== BONUS ===");
+
+  // objek UserRepository
+  UserRepository userRepo = UserRepository();
+  userRepo.create("Uliya");
+  userRepo.read();
+  userRepo.update(1, "Uliya Gumpari");
+  userRepo.delete(1);
+
+  print("----------------");
+
+  // objek ProductRepository
+  ProductRepository productRepo = ProductRepository();
+  productRepo.create("Laptop Asus");
+  productRepo.read();
+  productRepo.update(1, "Laptop Asus ROG");
+  productRepo.delete(1);
+
+  print("----------------");
+
+  // penggunaan MathUtils
+  print("Tambah: ${MathUtils.tambah(10, 5)}");
+  print("Kurang: ${MathUtils.kurang(10, 5)}");
+  print("Kali: ${MathUtils.kali(10, 5)}");
+  print("Bagi: ${MathUtils.bagi(10, 5)}");
+}
+}
+}
+      <button onclick="openModal('&run=true')">Run Program</button>
+    </section>
+
+  </div>
+
+  <footer>
+    © 2026 - ULIYA GUMPARI ✨
+  </footer>
+
+  <!-- MODAL -->
+  <div id="modal" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeModal()">&times;</span>
+      <iframe id="dartFrame" src=""></iframe>
+    </div>
+  </div>
+
+  <script>
+    // Reveal Animations
+    const sections = document.querySelectorAll("section");
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("show");
+        }
+      });
+    }, { threshold: 0.1 });
+
+    sections.forEach(sec => observer.observe(sec));
+
+    // Modal Logic
+    function openModal(link) {
+      document.getElementById("modal").style.display = "block";
+      document.getElementById("dartFrame").src = link;
+      document.body.style.overflow = "hidden";
+    }
+
+    function closeModal() {
+      document.getElementById("modal").style.display = "none";
+      document.getElementById("dartFrame").src = "";
+      document.body.style.overflow = "auto";
+    }
+
+    window.onclick = function (e) {
+      if (e.target == document.getElementById("modal")) closeModal();
+    }
+
+    // SECURITY PROTOCOL: ANTI-VANDALISM & ANTI-VIEWSOURCE
+    document.addEventListener('contextmenu', e => e.preventDefault());
+    document.onkeydown = function (e) {
+      if (e.keyCode == 123) return false; // F12
+      if (e.ctrlKey && e.shiftKey && (e.keyCode == 73 || e.keyCode == 74 || e.keyCode == 67)) return false; // Ctrl+Shift+I/J/C
+      if (e.ctrlKey && e.keyCode == 85) return false; // Ctrl+U
+      if (e.ctrlKey && e.keyCode == 83) return false; // Ctrl+S
+    };
+    document.onselectstart = function () { return false; };
+
+  </script>
+
+</body>
+
+</html>
