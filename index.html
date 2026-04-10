@@ -521,39 +521,37 @@ void main() {
 
 base class Animal {
   void speak() {
-    print("Animal makes sound");
+    print("Animal makes a sound");
   }
 }
 
-base class Dog extends Animal {
+base class Bird extends Animal {
   @override
   void speak() {
-    print("Meong!");
+    print("Cuit!");
   }
 }
 
-base class Cat extends Animal {
+base class Elephant extends Animal {
   @override
   void speak() {
-    print("Mbek!");
+    print("Pawoo!");
   }
 }
 
 void main() {
-  print("=== BASE CLASS ===");
+  Animal animal;
 
-  Animal a = Animal();
-  Animal dog = Cat();
-  Animal cat = Goat();
+  animal = Bird();
+  animal.speak(); 
 
-  a.speak();
-  dog.speak();
-  cat.speak();
+  animal = Elephant();
+  animal.speak(); 
 }
 </code></pre>
       </div>
 
-      <button onclick="openModal('&run=true')">Run Program</button>
+    <button onclick="showImage('Output2.jpg')">Lihat Capture</button>
     </section>
 
     <section>
@@ -595,8 +593,8 @@ void main() {
 </code></pre>
       </div>
 
-      <button onclick="openModal('&run=true')">Run Program</button>
-    </section>
+    <button onclick="showImage('Output3.jpg')">Lihat Capture</button>
+     </section>
 
     <section>
       <h2>. Perbandingan Class Modifers</h2>
