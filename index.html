@@ -786,30 +786,15 @@ base class UserRepository extends Repository {
   }
 }
 
-base class ProductRepository extends Repository {
-  @override
-  void read() {
-    print("Menampilkan semua produk");
-  }
-}
-
 void main() {
-  print("=== REPOSITORY ===");
+  print("=== REPOSITORY USER ===");
 
   UserRepository userRepo = UserRepository();
   userRepo.create("Uliya");
   userRepo.read();
   userRepo.update(1, "Uliya Gumpari");
   userRepo.delete(1);
-
-  print("----------------");
-
-  ProductRepository productRepo = ProductRepository();
-  productRepo.create("Laptop Asus");
-  productRepo.read();
-  productRepo.update(1, "Laptop Asus ROG");
-  productRepo.delete(1);
-}
+} 
 </code></pre>
       </div>
       
