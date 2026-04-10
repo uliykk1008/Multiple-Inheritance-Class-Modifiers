@@ -279,7 +279,7 @@
   <div class="container">
 
       <section>
-  <h2>.Multiple Inheritance dengan Mixin, Polimorfisme, dan Abstraksi</h2>
+  <h2> Multiple Inheritance dengan Mixin, Polimorfisme, dan Abstraksi</h2>
 
   <p>
     Dalam pemrograman berorientasi objek, terdapat beberapa konsep penting seperti
@@ -309,7 +309,7 @@
  </section>
 
     <section>
-      <h2>. Studi Kasus Burung Dan Bebek</h2>
+      <h2> Studi Kasus Burung Dan Bebek</h2>
       <p>
     Burung merupakan class induk, sedangkan Bebek adalah class turunan.
     Bebek mewarisi sifat dari Burung, tetapi dapat memiliki perilaku yang berbeda.
@@ -357,7 +357,7 @@ void main() {
     </section>
 
     <section>
-      <h2>. STUDI KASUS MIXIN DENGAN STATE</h2>
+      <h2> STUDI KASUS MIXIN DENGAN STATE</h2>
       <p>
     Mixin dengan state digunakan untuk menambahkan fitur sekaligus menyimpan data
     (state) ke dalam sebuah class tanpa harus menggunakan pewarisan langsung.
@@ -431,7 +431,7 @@ void main() {
     </section>
 
     <section>
-      <h2>. Pengantar Class Modifers</h2>
+      <h2> Pengantar Class Modifers</h2>
       <p>
     Class modifiers adalah kata kunci dalam Dart yang digunakan untuk mengatur
     bagaimana sebuah class dapat digunakan, diwariskan, atau diimplementasikan.
@@ -444,7 +444,7 @@ void main() {
     </section>
 
      <section>
-      <h2>05. Sealed Class dan Keuntungannya</h2>
+      <h2> Sealed Class dan Keuntungannya</h2>
       <p>
     Sealed class adalah class yang membatasi pewarisan hanya pada file yang sama.
     Class ini digunakan untuk mengontrol subclass yang dapat dibuat.
@@ -487,8 +487,8 @@ void handleResponse(ApiResponse response) {
 void main() {
   print("=== SEALED CLASS ===");
 
-  ApiResponse res1 = Success("Data berhasil");
-  ApiResponse res2 = Error("Koneksi gagal");
+  ApiResponse res1 = Success("Selamat datang Uliya");
+  ApiResponse res2 = Error("Password salah");
 
   handleResponse(res1);
   handleResponse(res2);
@@ -500,7 +500,7 @@ void main() {
     </section>
 
     <section>
-      <h2>. Base Class dan Penggunanya </h2>
+      <h2> Base Class dan Penggunanya </h2>
       <p>
     Base class adalah class yang dapat diwariskan, tetapi hanya dapat digunakan
     sebagai dasar oleh class lain dalam library yang sama.
@@ -528,14 +528,14 @@ base class Animal {
 base class Dog extends Animal {
   @override
   void speak() {
-    print("Woof!");
+    print("Meong!");
   }
 }
 
 base class Cat extends Animal {
   @override
   void speak() {
-    print("Meow!");
+    print("Mbek!");
   }
 }
 
@@ -543,8 +543,8 @@ void main() {
   print("=== BASE CLASS ===");
 
   Animal a = Animal();
-  Animal dog = Dog();
-  Animal cat = Cat();
+  Animal dog = Cat();
+  Animal cat = Goat();
 
   a.speak();
   dog.speak();
@@ -557,7 +557,7 @@ void main() {
     </section>
 
     <section>
-      <h2>07. Final Class</h2>
+      <h2> Final Class</h2>
       <p>
     Final class adalah class yang tidak dapat diwariskan atau di-extend oleh class lain.
   </p>
@@ -589,7 +589,7 @@ final class Settings {
 void main() {
   print("=== FINAL CLASS ===");
 
-  Settings s = Settings(theme: "Dark", fontSize: 14);
+  Settings s = Settings(theme: "Light", fontSize: 16);
   s.showSettings();
 }
 </code></pre>
@@ -629,7 +629,7 @@ void main() {
 </section>
 
     <section>
-      <h2>. Praktik 1 Sealed Class dengan Pattern Matching</h2>
+      <h2> Praktik 1 Sealed Class dengan Pattern Matching</h2>
       <p>
     Sealed class memungkinkan kita mengetahui semua kemungkinan subclass
     yang ada dalam satu file.
@@ -690,7 +690,7 @@ void main() {
     </section>
 
        <section>
-      <h2>. Sistem State Management</h2>
+      <h2> Sistem State Management</h2>
       <p></p>
 
       <div class="code-container">
@@ -738,7 +738,7 @@ void main() {
     </section>
 
     <section>
-      <h2>11. Ringkasan & Best Practices</h2>
+      <h2> Ringkasan & Best Practices</h2>
       <p><b>Ringkasan:</b></p>
   <ul>
     <li>Sealed class digunakan untuk membatasi hierarki dan mendukung pattern matching</li>
@@ -755,13 +755,14 @@ void main() {
 </section>
 
       <section>
-  <h2>12. Latihan</h2>
+  <h2> Bonus Base Class Repository</h2>
 
       <div class="code-container">
         <div class="code-header">DART SOURCE CODE</div>
         <pre><code>// Nama   : Uliya Gumpari
 // NIM   : 251410008
 // Kelas : SI2A
+
 base class Repository {
   void create(String data) {
     print("Create: $data");
@@ -794,17 +795,9 @@ base class ProductRepository extends Repository {
   }
 }
 
-final class MathUtils {
-  static int tambah(int a, int b) => a + b;
-  static int kurang(int a, int b) => a - b;
-  static int kali(int a, int b) => a * b;
-  static double bagi(double a, double b) => a / b;
-}
-
 void main() {
-  print("=== BONUS ===");
+  print("=== REPOSITORY ===");
 
-  // objek UserRepository
   UserRepository userRepo = UserRepository();
   userRepo.create("Uliya");
   userRepo.read();
@@ -813,16 +806,37 @@ void main() {
 
   print("----------------");
 
-  // objek ProductRepository
   ProductRepository productRepo = ProductRepository();
   productRepo.create("Laptop Asus");
   productRepo.read();
   productRepo.update(1, "Laptop Asus ROG");
   productRepo.delete(1);
+}
+</code></pre>
+      </div>
+      
+      <button onclick="openModal('&run=true')">Run Program</button>
+    </section>
 
-  print("----------------");
+    <section>
+  <h2> Bonus Final Class MathUtils</h2>
 
-  // penggunaan MathUtils
+      <div class="code-container">
+        <div class="code-header">DART SOURCE CODE</div>
+        <pre><code>// Nama   : Uliya Gumpari
+// NIM   : 251410008
+// Kelas : SI2A
+
+final class MathUtils {
+  static int tambah(int a, int b) => a + b;
+  static int kurang(int a, int b) => a - b;
+  static int kali(int a, int b) => a * b;
+  static double bagi(double a, double b) => a / b;
+}
+
+void main() {
+  print("=== MATH UTILS ===");
+
   print("Tambah: ${MathUtils.tambah(10, 5)}");
   print("Kurang: ${MathUtils.kurang(10, 5)}");
   print("Kali: ${MathUtils.kali(10, 5)}");
