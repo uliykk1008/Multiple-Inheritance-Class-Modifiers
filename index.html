@@ -496,7 +496,7 @@ void main() {
 </code></pre>
       </div>
 
-    <button onclick="showImage('Output.jpg 1')">Lihat Output</button>
+    <button onclick="showImage('Output1.jpg')">Lihat Capture</button>
     </section>
 
     <section>
@@ -882,11 +882,23 @@ void main() {
       document.body.style.overflow = "hidden";
     }
 
+    function showImage(img) {
+  document.getElementById("modal").style.display = "block";
+  document.getElementById("dartFrame").outerHTML =
+    `<img src="${img}" style="width:100%; height:100%; object-fit:contain;">`;
+  document.body.style.overflow = "hidden";
+}
+
     function closeModal() {
-      document.getElementById("modal").style.display = "none";
-      document.getElementById("dartFrame").src = "";
-      document.body.style.overflow = "auto";
-    }
+  document.getElementById("modal").style.display = "none";
+
+  document.querySelector(".modal-content").innerHTML = `
+    <span class="close" onclick="closeModal()">&times;</span>
+    <iframe id="dartFrame" src=""></iframe>
+  `;
+
+  document.body.style.overflow = "auto";
+}
 
     window.onclick = function (e) {
       if (e.target == document.getElementById("modal")) closeModal();
