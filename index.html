@@ -582,6 +582,54 @@ void main() {
     <button onclick="showImage('Output2.jpg')">Lihat Capture</button>
     </section>
 
+<section>
+  <h2> Kapan Menggunakan Base Class</h2>  <p>
+    Base class digunakan ketika ingin membatasi pewarisan class agar hanya dapat
+    dilakukan dengan extends dan tetap berada dalam kontrol yang jelas.
+    Dengan base class, pengembang dapat menjaga struktur program agar tidak
+    digunakan secara sembarangan.
+  </p>  <p>
+    Penggunaan base class membantu memastikan bahwa class turunan mengikuti
+    aturan yang sudah ditentukan, sehingga program menjadi lebih terstruktur
+    dan konsisten.
+  </p>  <p><b>Kapan digunakan:</b></p>
+  <ul>
+    <li>Saat ingin membatasi pewarisan hanya dengan extends</li>
+    <li>Saat ingin menjaga struktur class tetap konsisten</li>
+    <li>Saat ingin mencegah penggunaan implements yang tidak sesuai</li>
+    <li>Saat membutuhkan kontrol penuh terhadap class turunan</li>
+  </ul>
+
+      <div class="code-container">
+        <div class="code-header">DART SOURCE CODE</div>
+        <pre><code>// Nama   : Uliya Gumpari
+// NIM   : 251410008
+// Kelas : SI2A
+
+base class Animal {
+  void move() {
+    print("Hewan bergerak");
+  }
+}
+
+base class Elephant extends Animal {
+  @override
+  void move() {
+    print("Gajah berjalan");
+  }
+}
+
+void main() {
+  print("=== PENGGUNAAN BASE CLASS ANIMAL ===");
+
+  Animal animal = Elephant();
+  animal.move();
+}
+</code></pre>
+      </div>
+
+    <button onclick="showImage('Output12.jpg')">Lihat Capture</button>
+    </section>
     <section>
       <h2> Final Class</h2>
       <p>
