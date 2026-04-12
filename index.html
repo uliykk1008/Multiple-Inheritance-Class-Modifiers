@@ -494,18 +494,14 @@ void main() {
     <button onclick="showImage('Output1.jpg')">Lihat Capture</button>
     </section>
 
-    <section>
-  <h2> Penggunaan Sealed Class</h2>  <p>
-    Sealed class digunakan untuk memastikan setiap kondisi dalam program
-    dapat ditangani dengan jelas dan aman. Setiap subclass seperti Success
-    dan Error memiliki peran masing-masing dalam merepresentasikan keadaan tertentu.
-  </p>  <p>
-    Dengan penggunaan sealed class, program dapat melakukan pengecekan tipe
-    secara terkontrol sehingga semua kemungkinan kondisi dapat diproses
-    tanpa ada yang terlewat.
-  </p>  <p>
-    Hal ini membuat alur program lebih terstruktur, aman, dan mudah dipahami.
-  </p>
+   <section>
+  <h2> Keuntungan Sealed Class</h2>
+  <ul>
+    <li>Membatasi pembuatan subclass hanya dalam satu file sehingga lebih terkontrol</li>
+    <li>Meningkatkan keamanan karena tidak semua class bisa mewarisi</li>
+    <li>Mempermudah penanganan kondisi dengan pattern matching</li>
+    <li>Mencegah kemungkinan kondisi yang tidak tertangani dalam program</li>
+  </ul>
 
       <div class="code-container">
         <div class="code-header">DART SOURCE CODE</div>
