@@ -494,6 +494,61 @@ void main() {
     </section>
 
     <section>
+  <h2> Penggunaan Sealed Class</h2>  <p>
+    Sealed class digunakan untuk memastikan setiap kondisi dalam program
+    dapat ditangani dengan jelas dan aman. Setiap subclass seperti Success
+    dan Error memiliki peran masing-masing dalam merepresentasikan keadaan tertentu.
+  </p>  <p>
+    Dengan penggunaan sealed class, program dapat melakukan pengecekan tipe
+    secara terkontrol sehingga semua kemungkinan kondisi dapat diproses
+    tanpa ada yang terlewat.
+  </p>  <p>
+    Hal ini membuat alur program lebih terstruktur, aman, dan mudah dipahami.
+  </p>
+
+      <div class="code-container">
+        <div class="code-header">DART SOURCE CODE</div>
+        <pre><code>// Nama   : Uliya Gumpari
+// NIM   : 251410008
+// Kelas : SI2A
+
+sealed class ApiResponse {}
+
+class Success extends ApiResponse {
+  final String message;
+  Success(this.message);
+}
+
+class Error extends ApiResponse {
+  final String errorMessage;
+  Error(this.errorMessage);
+}
+
+void handleResponse(ApiResponse response) {
+  if (response is Success) {
+    print("Success: ${response.message}");
+  } else if (response is Error) {
+    print("Error: ${response.errorMessage}");
+  }
+}
+
+void main() {
+  print("=== KEUNTUNGAN SEALED CLASS ===");
+
+  ApiResponse res1 = Success("Selamat datang Uliya");
+  ApiResponse res2 = Error("Password salah");
+
+  handleResponse(res1);
+  handleResponse(res2);
+}
+</code></pre>
+      </div>
+
+    <button onclick="showImage('Output11.jpg')">Lihat Capture</button>
+    </section>
+
+
+    <section>
       <h2> Base Class dan Penggunanya </h2>
       <p>
     Base class adalah class yang dapat diwariskan, tetapi hanya dapat digunakan
