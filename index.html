@@ -544,20 +544,12 @@ void main() {
     <button onclick="showImage('Output11.jpg')">Lihat Capture</button>
     </section>
 
-
     <section>
-      <h2> Base Class dan Penggunanya </h2>
-      <p>
-    Base class adalah class yang dapat diwariskan, tetapi hanya dapat digunakan
-    sebagai dasar oleh class lain dalam library yang sama.
+  <h2> Base Class</h2>  <p>
+    Base class adalah class yang hanya bisa diwariskan menggunakan extends
+    dan tidak dapat diimplementasikan secara bebas di luar library.
+    Class ini digunakan untuk mengontrol pewarisan agar tetap terstruktur.
   </p>
-
-  <p><b>Kapan Digunakan:</b></p>
-  <ul>
-    <li>Saat ingin membatasi pewarisan hanya dalam satu library</li>
-    <li>Untuk menjaga struktur class agar tetap terkontrol</li>
-    <li>Ketika ingin memberikan dasar implementasi yang aman</li>
-  </ul>
 
       <div class="code-container">
         <div class="code-header">DART SOURCE CODE</div>
@@ -566,33 +558,23 @@ void main() {
 // Kelas : SI2A
 
 base class Animal {
-  void speak() {
-    print("Animal makes a sound");
+  void sound() {
+    print("Hewan mengeluarkan suara");
   }
 }
 
-base class Bird extends Animal {
+base class Lion extends Animal {
   @override
-  void speak() {
-    print("Cuit!");
-  }
-}
-
-base class Elephant extends Animal {
-  @override
-  void speak() {
-    print("Pawoo!");
+  void sound() {
+    print("Singa mengaum");
   }
 }
 
 void main() {
-  Animal animal;
+  print("=== BASE CLASS ANIMAL ===");
 
-  animal = Bird();
-  animal.speak(); 
-
-  animal = Elephant();
-  animal.speak(); 
+  Animal animal = Lion();
+  animal.sound();
 }
 </code></pre>
       </div>
