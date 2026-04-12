@@ -445,18 +445,10 @@ void main() {
 
      <section>
       <h2> Sealed Class dan Keuntungannya</h2>
-      <p>
-    Sealed class adalah class yang membatasi pewarisan hanya pada file yang sama.
-    Class ini digunakan untuk mengontrol subclass yang dapat dibuat.
+       <p>
+    Sealed class adalah class yang membatasi pewarisan hanya dalam satu file.
+    Class ini digunakan untuk mengontrol subclass agar tidak dibuat sembarangan.
   </p>
-
-  <p><b>Keuntungan Sealed Class:</b></p>
-  <ul>
-    <li>Membatasi pembuatan subclass secara lebih terkontrol</li>
-    <li>Meningkatkan keamanan struktur program</li>
-    <li>Mempermudah pengelolaan dan pemahaman kode</li>
-    <li>Membantu dalam penggunaan pattern matching</li>
-  </ul>
 
       <div class="code-container">
         <div class="code-header">DART SOURCE CODE</div>
@@ -469,18 +461,20 @@ sealed class ApiResponse {}
 class Success extends ApiResponse {
   final String message;
   Success(this.message);
+
+  @override
+  String toString() {
+    return "Success: $message";
+  }
 }
 
 class Error extends ApiResponse {
   final String errorMessage;
   Error(this.errorMessage);
-}
 
-void handleResponse(ApiResponse response) {
-  if (response is Success) {
-    print("Success: ${response.message}");
-  } else if (response is Error) {
-    print("Error: ${response.errorMessage}");
+  @override
+  String toString() {
+    return "Error: $errorMessage";
   }
 }
 
@@ -490,8 +484,8 @@ void main() {
   ApiResponse res1 = Success("Selamat datang Uliya");
   ApiResponse res2 = Error("Password salah");
 
-  handleResponse(res1);
-  handleResponse(res2);
+  print(res1);
+  print(res2);
 }
 </code></pre>
       </div>
