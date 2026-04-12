@@ -754,6 +754,24 @@ void main() {
 
       <section>
   <h2> Bonus Base Class Repository</h2>
+      <p>
+        Repository menggunakan base class agar hanya bisa diwariskan menggunakan extends,
+    bukan diimplementasikan sembarangan.
+  </p>  <p><b>Fitur Base Class pada Repository:</b></p>
+  <ul>
+    <li>Hanya bisa diwariskan dengan extends</li>
+    <li>Tidak bisa digunakan dengan implements di luar library</li>
+    <li>Menjaga struktur method tetap sama</li>
+  </ul>  <p><b>Kenapa menggunakan base:</b></p>
+  <ul>
+    <li>Menjaga struktur CRUD tetap konsisten</li>
+    <li>Mencegah implementasi yang tidak sesuai</li>
+    <li>Membatasi penggunaan class agar lebih terkontrol</li>
+  </ul>  <p><b>Batasan:</b></p>
+  <ul>
+    <li>Tidak bisa diimplementasikan menggunakan implements</li>
+  </ul>
+</section>
 
       <div class="code-container">
         <div class="code-header">DART SOURCE CODE</div>
@@ -803,7 +821,24 @@ void main() {
 
     <section>
   <h2> Bonus Final Class MathUtils</h2>
-
+<p>
+    MathUtils menggunakan final class karena hanya berisi fungsi utilitas
+    dan tidak perlu diwariskan ke class lain.
+  </p>  <p><b>Fitur Final Class pada MathUtils:</b></p>
+  <ul>
+    <li>Tidak bisa di-extend oleh class lain</li>
+    <li>Tidak bisa diimplementasikan</li>
+    <li>Cocok untuk method static</li>
+  </ul>  <p><b>Kenapa menggunakan final:</b></p>
+  <ul>
+    <li>Mencegah class diwariskan</li>
+    <li>Menjaga fungsi tetap sederhana dan aman</li>
+    <li>Menghindari perubahan dari subclass</li>
+  </ul>  <p><b>Batasan:</b></p>
+  <ul>
+    <li>Tidak bisa diwariskan sama sekali</li>
+  </ul>
+</section>
       <div class="code-container">
         <div class="code-header">DART SOURCE CODE</div>
         <pre><code>// Nama   : Uliya Gumpari
