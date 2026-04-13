@@ -852,7 +852,10 @@ void main() {
   <h2> Bonus Base Class Repository</h2>
       <p>
         Repository menggunakan base class agar hanya bisa diwariskan menggunakan extends,
-    bukan diimplementasikan sembarangan.
+    bukan diimplementasikan sembarangan.<p>
+  Penggunaan base atau abstract class bertujuan untuk mencegah implementasi langsung
+  yang tidak sesuai, sehingga hanya class turunan yang mengikuti aturan yang dapat digunakan.
+</p>
   </p>  <p><b>Fitur Base Class pada Repository:</b></p>
   <ul>
     <li>Hanya bisa diwariskan dengan extends</li>
@@ -918,7 +921,10 @@ void main() {
   <h2> Bonus Final Class MathUtils</h2>
 <p>
     MathUtils menggunakan final class karena hanya berisi fungsi utilitas
-    dan tidak perlu diwariskan ke class lain.
+    dan tidak perlu diwariskan ke class lain.<p>
+  Penggunaan final class bertujuan untuk memastikan bahwa class ini tidak dapat diwariskan
+  sehingga fungsi di dalamnya tetap aman dan tidak diubah oleh class lain.
+</p>
   </p>  <p><b>Fitur Final Class pada MathUtils:</b></p>
   <ul>
     <li>Tidak bisa di-extend oleh class lain</li>
