@@ -579,14 +579,46 @@ void main() {
 
     <button onclick="showImage('Output2.jpg')">Lihat Capture</button>
     </section>
-    <section>
+    
+     <section>
       <h2> Final Class</h2>
-      <p>
-    Final class adalah class yang tidak dapat diwariskan atau di-extend oleh class lain.
+       <p>  Final class adalah class yang tidak dapat diwariskan atau di-extend oleh class lain.
     Final class digunakan ketika sebuah class tidak ingin diwariskan agar implementasi tetap
         aman dan tidak diubah oleh class lain.
-  </p>
+     </p>
 
+      <div class="code-container">
+        <div class="code-header">DART SOURCE CODE</div>
+        <pre><code>// Nama   : Uliya Gumpari
+// NIM   : 251410008
+// Kelas : SI2A
+
+          //libfinal.dart
+final class Settings {
+  final String theme;
+  final int fontSize;
+
+  Settings({required this.theme, required this.fontSize});
+
+  void showSettings() {
+    print("Theme: $theme, Font Size: $fontSize");
+  }
+}
+
+base class CustomSettings extends Settings {
+  CustomSettings(String theme, int fontSize)
+      : super(theme: theme, fontSize: fontSize);
+}
+</code></pre>
+      </div>
+ </section>
+    
+    <section>
+      <h2>  Penggunaan Final Class</h2>
+      <p>
+    Class final hanya dapat dipakai langsung,tidak dapat
+        secara dari luar.
+  </p>
   <p><b>Kegunaan:</b></p>
   <ul>
     <li>Mencegah class digunakan sebagai parent</li>
@@ -600,22 +632,14 @@ void main() {
 // Nim    : 251410008
 // Kelas  : SI2A
 
-final class Settings {
-  final String theme;
-  final int fontSize;
-
-  Settings({required this.theme, required this.fontSize});
-
-  void showSettings() {
-    print("Theme: $theme, Font Size: $fontSize");
-  }
-}
+import 'libfinal.dart';
 
 void main() {
-  print("=== FINAL CLASS ===");
-
-  Settings settings = Settings(theme: "Dark", fontSize: 14);
+  Settings settings = Settings(theme: "Dark", fontSize: 18);
   settings.showSettings();
+
+  CustomSettings custom = CustomSettings("Dark", 18);
+  custom.showSettings();
 }
 </code></pre>
       </div>
