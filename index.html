@@ -463,42 +463,21 @@ dan memastikan semua kemungkinan kondisi dalam program dapat ditangani dengan je
 // NIM   : 251410008
 // Kelas : SI2A
 
+          //libsealed.dart
 sealed class ApiResponse {}
 
 class Success extends ApiResponse {
   final String message;
   Success(this.message);
-
-  @override
-  String toString() {
-    return "Success: $message";
-  }
 }
 
 class Error extends ApiResponse {
   final String errorMessage;
   Error(this.errorMessage);
-
-  @override
-  String toString() {
-    return "Error: $errorMessage";
-  }
-}
-
-void main() {
-  print("=== SEALED CLASS ===");
-
-  ApiResponse res1 = Success("Selamat datang Uliya");
-  ApiResponse res2 = Error("Password salah");
-
-  print(res1);
-  print(res2);
 }
 </code></pre>
       </div>
-
-    <button onclick="showImage('Output1.jpg')">Lihat Capture</button>
-    </section>
+ </section>
 
    <section>
   <h2> Keuntungan Sealed Class</h2>
@@ -515,17 +494,7 @@ void main() {
 // NIM   : 251410008
 // Kelas : SI2A
 
-sealed class ApiResponse {}
-
-class Success extends ApiResponse {
-  final String message;
-  Success(this.message);
-}
-
-class Error extends ApiResponse {
-  final String errorMessage;
-  Error(this.errorMessage);
-}
+import 'libsealed.dart';
 
 void handleResponse(ApiResponse response) {
   if (response is Success) {
@@ -536,18 +505,13 @@ void handleResponse(ApiResponse response) {
 }
 
 void main() {
-  print("=== KEUNTUNGAN SEALED CLASS ===");
-
-  ApiResponse res1 = Success("Selamat datang Uliya");
-  ApiResponse res2 = Error("Password salah");
-
-  handleResponse(res1);
-  handleResponse(res2);
+  handleResponse(Success("Selamat datang Uliya"));
+  handleResponse(Error("Password salah"));
 }
 </code></pre>
       </div>
 
-    <button onclick="showImage('Output11.jpg')">Lihat Capture</button>
+    <button onclick="showImage('Output1.jpg')">Lihat Capture</button>
     </section>
 
     <section>
