@@ -836,8 +836,8 @@ void main() {
         <pre><code>// Nama   : Uliya Gumpari
 // NIM   : 251410008
 // Kelas : SI2A
-
-          // repository.dart
+          
+ // repository.dart
 base class Repository {
   void create(String data) {
     print("Create data: $data");
@@ -908,6 +908,32 @@ void main() {
     <li>Tidak bisa di-extend oleh class lain</li>
     <li>Tidak bisa diimplementasikan</li>
     <li>Cocok untuk method static</li>
+      <div class="code-container">
+        <div class="code-header">DART SOURCE CODE</div>
+        <pre><code>// Nama   : Uliya Gumpari
+// NIM   : 251410008
+// Kelas : SI2A
+
+ // math_utils.dart
+final class MathUtils {
+  static int tambah(int a, int b) {
+    return a + b;
+  }
+
+  static int kurang(int a, int b) {
+    return a - b;
+  }
+
+  static int kali(int a, int b) {
+    return a * b;
+  }
+
+  static double bagi(int a, int b) {
+    return a / b;
+  }
+}
+   </code></pre>
+      </div>
   </ul>  <p><b>Kenapa menggunakan final:</b></p>
   <ul>
     <li>Mencegah class diwariskan</li>
@@ -924,20 +950,13 @@ void main() {
 // NIM   : 251410008
 // Kelas : SI2A
 
-final class MathUtils {
-  static int tambah(int a, int b) => a + b;
-  static int kurang(int a, int b) => a - b;
-  static int kali(int a, int b) => a * b;
-  static double bagi(double a, double b) => a / b;
-}
+import 'math_utils.dart';
 
 void main() {
-  print("=== MATH UTILS ===");
-
-  print("Tambah: ${MathUtils.tambah(10, 5)}");
-  print("Kurang: ${MathUtils.kurang(10, 5)}");
-  print("Kali: ${MathUtils.kali(10, 5)}");
-  print("Bagi: ${MathUtils.bagi(10, 5)}");
+  print(MathUtils.tambah(10, 5));
+  print(MathUtils.kurang(10, 5));
+  print(MathUtils.kali(10, 5));
+  print(MathUtils.bagi(10, 5));
 }
 </code></pre>
       </div>
