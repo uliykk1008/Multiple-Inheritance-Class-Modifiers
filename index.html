@@ -830,6 +830,33 @@ void main() {
     <li>Hanya bisa diwariskan dengan extends</li>
     <li>Tidak bisa digunakan dengan implements di luar library</li>
     <li>Menjaga struktur method tetap sama</li>
+    
+     <div class="code-container">
+        <div class="code-header">DART SOURCE CODE</div>
+        <pre><code>// Nama   : Uliya Gumpari
+// NIM   : 251410008
+// Kelas : SI2A
+
+          // repository.dart
+base class Repository {
+  void create(String data) {
+    print("Create data: $data");
+  }
+
+  void read() {
+    print("Read data");
+  }
+
+  void update(String data) {
+    print("Update data: $data");
+  }
+
+  void delete(String data) {
+    print("Delete data: $data");
+  }
+}
+   </code></pre>
+      </div>
   </ul>  <p><b>Kenapa menggunakan base:</b></p>
   <ul>
     <li>Menjaga struktur CRUD tetap konsisten</li>
@@ -846,40 +873,22 @@ void main() {
 // NIM   : 251410008
 // Kelas : SI2A
 
-base class Repository {
-  void create(String data) {
-    print("Create: $data");
-  }
-
-  void read() {
-    print("Read data");
-  }
-
-  void update(int id, String data) {
-    print("Update id=$id: $data");
-  }
-
-  void delete(int id) {
-    print("Delete id=$id");
-  }
-}
+import 'repository.dart';
 
 base class UserRepository extends Repository {
   @override
-  void read() {
-    print("Menampilkan semua user");
+  void create(String data) {
+    print("User created: $data");
   }
 }
 
 void main() {
-  print("=== REPOSITORY USER ===");
-
-  UserRepository userRepo = UserRepository();
-  userRepo.create("Uliya");
-  userRepo.read();
-  userRepo.update(1, "Uliya Gumpari");
-  userRepo.delete(1);
-} 
+  var repo = UserRepository();
+  repo.create("Uliya Gumpari");
+  repo.read();
+  repo.update("Data Baru");
+  repo.delete("Data Lama");
+}
 </code></pre>
       </div>
       
