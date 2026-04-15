@@ -527,41 +527,16 @@ void main() {
 // NIM   : 251410008
 // Kelas : SI2A
 
+//libbase.dart
 base class Animal {
-  void sound() {
-    print("Hewan mengeluarkan suara");
-  }
-}
-
-base class Lion extends Animal {
-  @override
-  void sound() {
-    print("Singa mengaum");
-  }
-}
-
-void main() {
-  print("=== BASE CLASS ANIMAL ===");
-
-  Animal animal = Lion();
-  animal.sound();
+  void speak() {}
 }
 </code></pre>
       </div>
-
-    <button onclick="showImage('Output2.jpg')">Lihat Capture</button>
     </section>
 
 <section>
-  <h2> Kapan Menggunakan Base Class</h2>  <p>
-    Base class digunakan ketika ingin membatasi pewarisan class agar hanya dapat
-    dilakukan dengan extends dan tetap berada dalam kontrol yang jelas.
-    Dengan base class, pengembang dapat menjaga struktur program agar tidak
-    digunakan secara sembarangan.
-  </p>  <p>
-    Penggunaan base class membantu memastikan bahwa class turunan mengikuti
-    aturan yang sudah ditentukan, sehingga program menjadi lebih terstruktur
-    dan konsisten.
+  <h2> Kapan Menggunakan Base Class</h2> 
   </p>  <p><b>Kapan digunakan:</b></p>
   <ul>
     <li>Saat ingin membatasi pewarisan hanya dengan extends</li>
@@ -576,29 +551,33 @@ void main() {
 // NIM   : 251410008
 // Kelas : SI2A
 
-base class Animal {
-  void move() {
-    print("Hewan bergerak");
+import 'libbase.dart';
+
+base class Chicken extends Animal {
+  @override
+  void speak() {
+    print("Kukuruyuk!");
   }
 }
 
-base class Elephant extends Animal {
+base class Goat extends Animal {
   @override
-  void move() {
-    print("Gajah berjalan");
+  void speak() {
+    print("Mbeeek!");
   }
 }
 
 void main() {
-  print("=== PENGGUNAAN BASE CLASS ANIMAL ===");
+  Animal chicken = Chicken();
+  chicken.speak();
 
-  Animal animal = Elephant();
-  animal.move();
+  Animal goat = Goat();
+  goat.speak();
 }
 </code></pre>
       </div>
 
-    <button onclick="showImage('Output12.jpg')">Lihat Capture</button>
+    <button onclick="showImage('Output2.jpg')">Lihat Capture</button>
     </section>
     <section>
       <h2> Final Class</h2>
