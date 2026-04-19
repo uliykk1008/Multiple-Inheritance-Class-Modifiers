@@ -511,7 +511,33 @@ void main() {
 </code></pre>
       </div>
 
-    <button onclick="showImage('Output1.jpg')">Lihat Capture</button>
+
+
+    <button onclick="showImage('Output1.jpg')">Lihat Output Succes</button>
+<p>
+Error sealed class terjadi karena class tersebut hanya boleh di-extend
+di file yang sama. Jika dibuat di file berbeda, maka akan muncul error.
+</p>
+    
+      <div class="code-container">
+        <div class="code-header">DART SOURCE CODE</div>
+        <pre><code>// Nama   : Uliya Gumpari
+// NIM   : 251410008
+// Kelas : SI2A
+
+import 'libsealed.dart';
+
+// ERROR: mencoba membuat subclass di file berbeda
+class Loading extends ApiResponse {
+  final String info;
+  Loading(this.info);
+}
+
+void main() {}
+</code></pre>
+      </div>
+
+    <button onclick="showImage('Output6.jpg')">Lihat Output Error</button>
     </section>
 
     <section>
@@ -577,7 +603,33 @@ void main() {
 </code></pre>
       </div>
 
-    <button onclick="showImage('Output2.jpg')">Lihat Capture</button>
+    <button onclick="showImage('Output2.jpg')">Lihat Output Succes</button>
+    <p>
+Error ini muncul karena base class tidak bisa di-implements.
+Class tersebut hanya boleh menggunakan extends, bukan implements.
+</p>
+
+    <div class="code-container">
+        <div class="code-header">DART SOURCE CODE</div>
+        <pre><code>// Nama   : Uliya Gumpari
+// NIM   : 251410008
+// Kelas : SI2A
+
+import 'libbase.dart';
+
+// ERROR: mencoba implements base class dari file berbeda
+class SmallAnimal implements Animal {
+  @override
+  void speak() {
+    print("Suara kecil");
+  }
+}
+
+void main() {}
+</code></pre>
+      </div>
+
+    <button onclick="showImage('Output7.jpg')">Lihat Output Error</button>
     </section>
     
      <section>
@@ -644,7 +696,32 @@ void main() {
 </code></pre>
       </div>
 
-    <button onclick="showImage('Output3.jpg')">Lihat Capture</button>
+    <button onclick="showImage('Output3.jpg')">Lihat Output Succes</button>
+    <p>
+Kesalahan ini terjadi karena final class tidak dapat digunakan
+untuk extends maupun implements. Class tersebut hanya bisa
+digunakan secara langsung tanpa diturunkan.
+</p>
+
+    <div class="code-container">
+        <div class="code-header">DART SOURCE CODE</div>
+        <pre><code>// Nama   : Uliya Gumpari
+// Nim    : 251410008
+// Kelas  : SI2A
+
+import 'libfinal.dart';
+
+// ERROR: mencoba extend final class
+class AdvancedSettings extends Settings {
+  AdvancedSettings(String theme, int fontSize)
+      : super(theme: theme, fontSize: fontSize);
+}
+
+void main() {}
+</code></pre>
+      </div>
+
+    <button onclick="showImage('Output8.jpg')">Lihat Output Error</button>
      </section>
 
     <section>
