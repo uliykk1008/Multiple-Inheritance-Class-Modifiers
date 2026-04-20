@@ -514,7 +514,6 @@ void main() {
 
 
     <button onclick="showImage('Output1.jpg')">Lihat Output Succes</button>
-     
 <p>
 Error sealed class terjadi karena class tersebut hanya boleh di-extend
 di file yang sama. Jika dibuat di file berbeda, maka akan muncul error.
@@ -605,7 +604,6 @@ void main() {
       </div>
 
     <button onclick="showImage('Output2.jpg')">Lihat Output Succes</button>
-  
     <p>
 Error ini muncul karena base class tidak bisa di-implements.
 Class tersebut hanya boleh menggunakan extends, bukan implements.
@@ -699,7 +697,6 @@ void main() {
       </div>
 
     <button onclick="showImage('Output3.jpg')">Lihat Output Succes</button>
-      
     <p>
 Kesalahan ini terjadi karena final class tidak dapat digunakan
 untuk extends maupun implements. Class tersebut hanya bisa
@@ -972,7 +969,48 @@ void main() {
 </code></pre>
       </div>
       
-      <button onclick="showImage('Output4.jpg')">Lihat Capture</button>
+      <button onclick="showImage('Output4.jpg')">Lihat Output Succes</button>
+      <p>
+Contoh berikut menunjukkan kesalahan dalam penggunaan base class,
+yaitu menggunakan implements serta method yang tidak sesuai
+dengan class induknya.
+</p>
+      <div class="code-container">
+        <div class="code-header">DART SOURCE CODE</div>
+        <pre><code>// Nama   : Uliya Gumpari
+// NIM   : 251410008
+// Kelas : SI2A
+
+import 'repository.dart';
+
+// ERROR
+base class UliyaRepository implements Repository {
+  @override
+  void create(String data) {
+    print("Data dibuat oleh Uliya: $data");
+  }
+
+  @override
+  void read() {
+    print("Menampilkan data Uliya");
+  }
+
+  @override
+  void update(int id) { // ❌ kurang parameter (harusnya ada String data)
+    print("Update id: $id");
+  }
+
+  @override
+  void delete(String id) { // ❌ tipe data salah (harusnya int)
+    print("Hapus id: $id");
+  }
+}
+
+void main() {}
+</code></pre>
+      </div>
+      
+      <button onclick="showImage('Output9.jpg')">Lihat Output Error</button>
     </section>
 
     <section>
@@ -1041,7 +1079,29 @@ void main() {
 </code></pre>
       </div>
       
-      <button onclick="showImage('Output5.jpg')">Lihat Capture</button>
+      <button onclick="showImage('Output5.jpg')">Lihat Output Succes</button>
+      <p>
+Error ini terjadi karena class bertipe final tidak dapat diturunkan
+oleh class lain. MathUtils hanya bisa digunakan secara langsung
+tanpa menggunakan extends.
+</p>
+      <div class="code-container">
+        <div class="code-header">DART SOURCE CODE</div>
+        <pre><code>// Nama   : Uliya Gumpari
+// NIM   : 251410008
+// Kelas : SI2A
+
+
+import 'math_utils.dart';
+
+// ERROR
+class UliyaMath extends MathUtils {}
+
+void main() {}
+</code></pre>
+      </div>
+      
+      <button onclick="showImage('Output10.jpg')">Lihat Output Error</button>
     </section>
 
   </div>
